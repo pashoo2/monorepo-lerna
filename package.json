@@ -1,0 +1,46 @@
+{
+  "name": "monorepo-lerna",
+  "version": "0.0.1",
+  "description": "Boilerplate",
+  "private": true,
+  "workspaces": [
+    "./packages/*"
+  ],
+  "scripts": {
+    "postinstall": "lerna bootstrap --hoist",
+    "start": "lerna run start --stream",
+    "build": "lerna run build --stream --include-dependencies",
+    "lint": "lerna run --parallel lint",
+    "lint:fix": "lerna run --parallel lint:fix",
+    "prepare": "husky install",
+    "precommit": "lerna run --concurrency 1 --stream pre-commit --since HEAD --exclude-dependents",
+    "pre-push": "lerna run --concurrency 1 --stream pre-push --since HEAD --exclude-dependents",
+    "commit-lint": "commitlint --edit \"$1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pashoo2/monorepo-lerna.git"
+  },
+  "keywords": [
+    "map"
+  ],
+  "author": "akulichpaul@gmail.com bugdonepavlov@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pashoo2/monorepo-lerna/issues"
+  },
+  "homepage": "https://github.com/pashoo2/monorepo-lerna/#readme",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^16.1.0",
+    "@commitlint/config-conventional": "^16.0.0",
+    "@commitlint/config-lerna-scopes": "^16.0.0",
+    "husky": "^7.0.0",
+    "lerna": "^4.0.0",
+    "lint-staged": "^12.3.3"
+  }
+}
